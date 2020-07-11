@@ -2,10 +2,11 @@
 % Please edit documentation in R/chakraSlider.R
 \name{chakraSliderInput}
 \alias{chakraSliderInput}
-\title{<Add Title>}
+\title{Create a chakra slider}
 \usage{
 chakraSliderInput(
   inputId,
+  label = NULL,
   value,
   min,
   max,
@@ -18,6 +19,38 @@ chakraSliderInput(
   gap = "2rem"
 )
 }
+\arguments{
+\item{inputId}{the input slot that will be used to access the value}
+
+\item{label}{the label for the widget; this can be some HTML code}
+
+\item{value}{initial value}
+
+\item{min}{minimum allowed value}
+
+\item{max}{maximum allowed value}
+
+\item{step}{stepping interval to use when adjusting the value}
+
+\item{width}{width of the widget, e.g. \code{"50\%"} or \code{"200px"}}
+
+\item{size}{size of the widget, can be \code{"sm"} (small),
+\code{"md"} (medium) or \code{"lg"} (large)}
+
+\item{numberInputOptions}{list of options for the number input;
+see \code{\link{numberInputOptions}}}
+
+\item{trackColor}{color(s) for the track of the slider, can be
+a single color or a vector of two colors, one for the left side
+and one for the right side}
+
+\item{thumbOptions}{list of options for the thumb of the slider;
+see \code{\link{thumbOptions}}}
+
+\item{gap}{size of the gap between the number input and the slider,
+e.g. \code{"3px"} or \code{"5\%"}}
+}
 \description{
-<Add Description>
+This creates a chakra slider in the Shiny UI. A chakra slider
+has two elements: a number input and a slider, which are linked together.
 }

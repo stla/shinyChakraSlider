@@ -2,7 +2,7 @@
 % Please edit documentation in R/chakraSlider.R
 \name{numberInputOptions}
 \alias{numberInputOptions}
-\title{Options for the number input of \code{chakraSliderInput}}
+\title{Options for the number input of a chakra slider}
 \usage{
 numberInputOptions(
   width = NULL,
@@ -14,7 +14,24 @@ numberInputOptions(
   stepperColor = NULL
 )
 }
+\arguments{
+\item{width}{width of the number input, e.g. \code{"100px"} or \code{"20\%"}}
+
+\item{fontSize}{font size of the displayed value, e.g. \code{"15px"}}
+
+\item{fontColor}{color of the displayed value}
+
+\item{borderColor}{color of the border of the number input}
+
+\item{focusBorderColor}{color of the border of the number input on focus}
+
+\item{borderWidth}{width of the border of the number input,
+e.g. \code{"3px"} or \code{"medium"}}
+
+\item{stepperColor}{color(s) of the steppers, can be a single color
+or a vector of two colors, one for each stepper (increment and decrement)}
+}
 \description{
 Create a list of options to be passed to
-\code{numberInputOptions} in \code{chakraSliderInput}.
+\code{numberInputOptions} in \code{\link{chakraSliderInput}}.
 }

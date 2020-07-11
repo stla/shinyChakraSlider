@@ -2,10 +2,17 @@
 % Please edit documentation in R/chakraSlider.R
 \name{updateChakraSliderInput}
 \alias{updateChakraSliderInput}
-\title{<Add Title>}
+\title{Update a chakra slider}
 \usage{
-updateChakraSliderInput(session, inputId, value, configuration = NULL)
+updateChakraSliderInput(session, inputId, value)
+}
+\arguments{
+\item{session}{the Shiny session object}
+
+\item{inputId}{the id of the chakra slider to update}
+
+\item{value}{the new value of the chakra slider}
 }
 \description{
-<Add Description>
+Update the value of a chakra slider.
 }

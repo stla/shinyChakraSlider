@@ -18,7 +18,15 @@ import theme from "./chakra"
 import { IconContext } from "react-icons";
 import { FaRegDotCircle, FaArrowsAltH } from "react-icons/fa";
 import { MdRadioButtonChecked, MdRadioButtonUnchecked } from "react-icons/md";
+import ReactHtmlParser from "react-html-parser";
 
+const createLabel = (label) => {
+  let html = null;
+  if(label !== null){
+    html = ReactHtmlParser(decodeURI(label));
+  }
+  return html;
+}
 
 const createThumb = (icon, color, size) => {
     let thumb = null;
@@ -65,10 +73,17 @@ class Widget extends React.PureComponent {
     this.props.setShinyValue(parseFloat(value));
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.value > this.props.max || this.props.value < this.props.min){
+      this.props.setShinyValue(parseFloat(prevProps.value));
+    }
+  }
+
   render() {
     return (
       <ChakraProvider theme = {theme}>
         <CSSReset />
+        {createLabel(this.props.label)}
         <Flex>
           <NumberInput
             min = {this.props.min}
@@ -137,6 +152,7 @@ class Widget extends React.PureComponent {
 const Input = ({ configuration, value, setValue }) => {
   return (
     <Widget
+      label = {configuration.label}
       setShinyValue = {setValue}
       value = {value}
       min = {configuration.min}

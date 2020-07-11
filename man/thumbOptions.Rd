@@ -2,7 +2,7 @@
 % Please edit documentation in R/chakraSlider.R
 \name{thumbOptions}
 \alias{thumbOptions}
-\title{Options for the thumb of \code{chakraSliderInput}}
+\title{Options for the thumb of a chakra slider}
 \usage{
 thumbOptions(
   width = NULL,
@@ -15,7 +15,26 @@ thumbOptions(
   iconSize = NULL
 )
 }
+\arguments{
+\item{width}{width of the thumb, e.g. \code{"30px"}}
+
+\item{height}{height of the thumb, e.g. \code{"30px"}}
+
+\item{color}{color of the thumb}
+
+\item{borderColor}{color of the border of the thumb}
+
+\item{borderWidth}{width of the border of the thumb, e.g.
+\code{"3px"} or \code{"thin"}}
+
+\item{icon}{an icon for the thumb, can be \code{"circle"},
+\code{"dotCircle"}, \code{"bigdotCircle"} or \code{"arrows"}}
+
+\item{iconColor}{color of the icon}
+
+\item{iconSize}{size of the icon, e.g. \code{"10px"} or \code{"3em"}}
+}
 \description{
 Create a list of options to be passed to \code{thumbOptions}
-in \code{chakraSliderInput}.
+in \code{\link{chakraSliderInput}}
 }
