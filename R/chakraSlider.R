@@ -16,6 +16,7 @@ thumbOptions <- function(
   height = NULL,
   color = NULL,
   borderColor = NULL,
+  borderWidth = NULL,
   icon = NULL,
   iconColor = NULL,
   iconSize = NULL
@@ -28,9 +29,54 @@ thumbOptions <- function(
     height = validateCssUnit(height),
     color = color2hex(color),
     borderColor = color2hex(borderColor),
+    borderWidth = if(!is.null(borderWidth)){
+      if(borderWidth %in% c("medium", "thick", "thin")){
+        borderWidth
+      }else{
+        validateCssUnit(borderWidth)
+      }
+    },
     icon = icon,
     iconColor = color2hex(iconColor),
     iconSize = validateCssUnit(iconSize)
+  )
+}
+
+#' Options for the number input of \code{chakraSliderInput}
+#' @description Create a list of options to be passed to
+#' \code{numberInputOptions} in \code{chakraSliderInput}.
+#'
+#'
+#' @importFrom shiny validateCssUnit
+#' @export
+numberInputOptions <- function(
+  width = NULL,
+  fontSize = NULL,
+  fontColor = NULL,
+  borderColor = NULL,
+  focusBorderColor= NULL,
+  borderWidth = NULL,
+  stepperColor = NULL
+){
+  list(
+    width = validateCssUnit(width),
+    fontSize = validateCssUnit(fontSize),
+    fontColor = color2hex(fontColor),
+    borderColor = color2hex(borderColor),
+    focusBorderColor = color2hex(focusBorderColor),
+    borderWidth = if(!is.null(borderWidth)){
+      if(borderWidth %in% c("medium", "thick", "thin")){
+        borderWidth
+      }else{
+        validateCssUnit(borderWidth)
+      }
+    },
+    stepperColor = if(!is.null(stepperColor)){
+      if(length(stepperColor) == 1L) stepperColor <- rep(stepperColor, 2L)
+      lapply(stepperColor, color2hex)
+    }else{
+      list(NULL, NULL)
+    }
   )
 }
 
@@ -43,7 +89,19 @@ thumbOptions <- function(
 #' @importFrom htmltools htmlDependency tags
 #'
 #' @export
-chakraSliderInput <- function(inputId, value, thumbOptions = list()){
+chakraSliderInput <- function(
+  inputId,
+  value,
+  min,
+  max,
+  step = NULL,
+  width = "100%",
+  size = "md",
+  numberInputOptions = list(),
+  trackColor = NULL,
+  thumbOptions = list(),
+  gap = "2rem")
+{
   reactR::createReactShinyInput(
     inputId,
     "chakraSlider",
@@ -56,9 +114,31 @@ chakraSliderInput <- function(inputId, value, thumbOptions = list()){
     ),
     default = value,
     configuration = list(
-      thumbOptions = thumbOptions
+      min = min,
+      max = max,
+      step = step,
+      size = match.arg(size, c("sm", "md", "lg")),
+      numberInputOptions = if(is.null(numberInputOptions$width)){
+        append(list(width = sprintf("calc(%s / 4)", width)), numberInputOptions)
+      }else{
+        numberInputOptions
+      },
+      trackColor = if(!is.null(trackColor)){
+        colors <- lapply(trackColor, color2hex)
+        if(length(colors) == 1L) colors <- append(colors, list(NULL))
+        colors
+      }else{
+        list(NULL, NULL)
+      },
+      thumbOptions = thumbOptions,
+      gap = validateCssUnit(gap)
     ),
-    htmltools::tags$div
+    container = function(...){
+      htmltools::tags$div(
+        style = sprintf("width: %s;", validateCssUnit(width)),
+        ...
+      )
+    }
   )
 }
 

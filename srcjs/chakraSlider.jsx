@@ -40,7 +40,7 @@ const createThumb = (icon, color, size) => {
 //      thumb = <Box color={color} as={icon} />
       thumb =
         <IconContext.Provider
-          value={{ color: color, size: size}}
+          value = {{ color: color, size: size}}
         >
           <div>
             {icon}
@@ -71,23 +71,47 @@ class Widget extends React.PureComponent {
         <CSSReset />
         <Flex>
           <NumberInput
-            maxW = "100px"
-            mr = "2rem"
+            min = {this.props.min}
+            max = {this.props.max}
+            step = {this.props.step}
+            size = {this.props.size}
+            maxW = {this.props.numberInputOptions.width}
+            mr = {this.props.gap}
             value = {this.state.value}
             onChange = {this.handleChange}
           >
             <NumberInputField
               type = "number"
-              fontSize = "16px"
+              fontSize = {this.props.numberInputOptions.fontSize}
+              color = {this.props.numberInputOptions.fontColor}
+              borderColor = {this.props.numberInputOptions.borderColor}
+              focusBorderColor = {this.props.numberInputOptions.focusBorderColor}
+              borderWidth = {this.props.numberInputOptions.borderWidth}
             />
             <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
+              <NumberIncrementStepper
+                bg = {this.props.numberInputOptions.stepperColor[0]}
+              />
+              <NumberDecrementStepper
+                bg = {this.props.numberInputOptions.stepperColor[1]}
+              />
             </NumberInputStepper>
           </NumberInput>
-          <Slider flex="1" value={this.state.value} onChange={this.handleChange}>
-            <SliderTrack>
-              <SliderFilledTrack />
+          <Slider
+            flex = "1"
+            min = {this.props.min}
+            max = {this.props.max}
+            step = {this.props.step}
+            size = {this.props.size}
+            value = {this.state.value}
+            onChange = {this.handleChange}
+          >
+            <SliderTrack
+              bg = {this.props.trackColor[1]}
+            >
+              <SliderFilledTrack
+                bg = {this.props.trackColor[0]}
+              />
             </SliderTrack>
             <SliderThumb
               fontSize = "sm"
@@ -95,6 +119,7 @@ class Widget extends React.PureComponent {
               height = {this.props.thumbOptions.height}
               bg = {this.props.thumbOptions.color}
               borderColor = {this.props.thumbOptions.borderColor}
+              borderWidth = {this.props.thumbOptions.borderWidth}
             >
               {createThumb(
                 this.props.thumbOptions.icon,
@@ -114,7 +139,14 @@ const Input = ({ configuration, value, setValue }) => {
     <Widget
       setShinyValue = {setValue}
       value = {value}
+      min = {configuration.min}
+      max = {configuration.max}
+      step = {configuration.step}
+      size = {configuration.size}
+      numberInputOptions = {configuration.numberInputOptions}
+      trackColor = {configuration.trackColor}
       thumbOptions = {configuration.thumbOptions}
+      gap = {configuration.gap}
     />
   );
 };
