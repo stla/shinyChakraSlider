@@ -1,3 +1,4 @@
+// jshint ignore: start
 import { reactShinyInput } from "reactR";
 import {
   ChakraProvider,
@@ -77,6 +78,7 @@ class Widget extends React.PureComponent {
     if(this.props.value > this.props.max || this.props.value < this.props.min){
       this.props.setShinyValue(parseFloat(prevProps.value));
     }
+    this.setState({value: this.props.value});
   }
 
   render() {
