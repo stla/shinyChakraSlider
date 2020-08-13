@@ -72,6 +72,7 @@ thumbOptions <- function(
 #' @importFrom reactR createReactShinyInput
 #' @importFrom htmltools htmlDependency tags
 #' @importFrom shiny validateCssUnit
+#' @importFrom utils packageVersion
 #' @export
 chakraSliderInput <- function(
   inputId,
@@ -92,7 +93,7 @@ chakraSliderInput <- function(
     "chakraSlider",
     htmltools::htmlDependency(
       name = "chakraSlider-input",
-      version = "1.0.0",
+      version = as.character(packageVersion("shinyChakraSlider")),
       src = "www/shinyChakraSlider/chakraSlider",
       package = "shinyChakraSlider",
       script = "chakraSlider.js"

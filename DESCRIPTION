@@ -30,5 +30,6 @@ Imports:
     htmltools,
     shiny,
     reactR,
-    grDevices
+    grDevices,
+    utils
 RoxygenNote: 7.1.1
