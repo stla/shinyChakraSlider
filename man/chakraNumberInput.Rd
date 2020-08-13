@@ -12,7 +12,7 @@ chakraNumberInput(
   max,
   step = NULL,
   size = "md",
-  numberInputOptions = list()
+  options = list()
 )
 }
 \arguments{
@@ -31,8 +31,9 @@ chakraNumberInput(
 \item{size}{size of the widget, can be \code{"sm"} (small),
 \code{"md"} (medium) or \code{"lg"} (large)}
 
-\item{numberInputOptions}{list of options for the number input;
-see \code{\link{numberInputOptions}}}
+\item{options}{a list of options for the number input created with
+\code{\link{numberInputOptions}}; note that the width has to be set
+here}
 }
 \description{
 This creates a number input in the Shiny UI.

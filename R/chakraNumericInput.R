@@ -57,8 +57,9 @@ numberInputOptions <- function(
 #' @param step stepping interval to use when adjusting the value
 #' @param size size of the widget, can be \code{"sm"} (small),
 #'   \code{"md"} (medium) or \code{"lg"} (large)
-#' @param numberInputOptions list of options for the number input;
-#'   see \code{\link{numberInputOptions}}
+#' @param options a list of options for the number input created with
+#'   \code{\link{numberInputOptions}}; note that the width has to be set
+#'   here
 #'
 #' @importFrom reactR createReactShinyInput
 #' @importFrom htmltools htmlDependency tags
@@ -74,7 +75,7 @@ chakraNumberInput <- function(
   step = NULL,
 #  width = "100%",
   size = "md",
-  numberInputOptions = list())
+  options = list())
 {
   reactR::createReactShinyInput(
     inputId,
@@ -94,10 +95,10 @@ chakraNumberInput <- function(
       max = max,
       step = step,
       size = match.arg(size, c("sm", "md", "lg")),
-      numberInputOptions = if(is.null(numberInputOptions$width)){
-        append(list(width = "100%"), numberInputOptions)
+      numberInputOptions = if(is.null(options$width)){
+        append(list(width = "100%"), options)
       }else{
-        numberInputOptions
+        options
       },
       slider = FALSE
     ),

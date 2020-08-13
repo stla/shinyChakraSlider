@@ -74,6 +74,70 @@ thumbOptions <- function(
 #' @importFrom shiny validateCssUnit
 #' @importFrom utils packageVersion
 #' @export
+#'
+#' @examples library(shiny)
+#' library(shinyChakraSlider)
+#'
+#' ui <- fluidPage(
+#'   br(),
+#'   chakraSliderInput(
+#'     "slider",
+#'     label = tags$span(
+#'       style = "font-size: 20px; font-style: italic; color: darkred;",
+#'       "Chakra Slider"
+#'     ),
+#'     value = 5, min = 0, max = 10, step = 0.5,
+#'     width = "50%", size = "lg",
+#'     numberInputOptions = numberInputOptions(
+#'       width = "25%",
+#'       fontSize = "15px",
+#'       fontColor = "navyblue",
+#'       borderColor = "gold",
+#'       borderWidth = "medium",
+#'       focusBorderColor = "navyblue",
+#'       stepperColor = c("palegreen", "lightpink")
+#'     ),
+#'     trackColor = c("lightpink2", "springgreen"),
+#'     thumbOptions = thumbOptions(
+#'       width = "30px",
+#'       height = "30px",
+#'       color = "white",
+#'       borderColor = "darkblue",
+#'       borderWidth = "8px",
+#'       icon = "circle",
+#'       iconSize = "2.5em"
+#'     )
+#'   ),
+#'   br(),
+#'   tags$div(
+#'     style = "width: 50%;",
+#'     wellPanel(
+#'       style =
+#'         "vertical-align: top; width: 150px; padding: 11.5px; float: left;",
+#'       textOutput("value"),
+#'     ),
+#'     tags$div(
+#'       style = "float: right;",
+#'       actionButton("update", "Update value", class = "btn-danger btn-lg")
+#'     )
+#'   )
+#' )
+#'
+#' server <- function(input, output, session){
+#'
+#'   output[["value"]] <- renderText({
+#'     paste0("Value: ", input[["slider"]])
+#'   })
+#'
+#'   observeEvent(input[["update"]], {
+#'     updateChakraSliderInput(session, "slider", value = 8)
+#'   })
+#'
+#' }
+#'
+#' if(interactive()){
+#'   shinyApp(ui, server)
+#' }
 chakraSliderInput <- function(
   inputId,
   label = NULL,
