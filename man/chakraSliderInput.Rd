@@ -2,7 +2,7 @@
 % Please edit documentation in R/chakraSlider.R
 \name{chakraSliderInput}
 \alias{chakraSliderInput}
-\title{Create a chakra slider}
+\title{Chakra slider}
 \usage{
 chakraSliderInput(
   inputId,

@@ -1,9 +1,3 @@
-color2hex <- function(color){
-  if(is.null(color)) return(NULL)
-  RGB <- col2rgb(color)[,1]
-  rgb(RGB["red"], RGB["green"], RGB["blue"], maxColorValue = 255)
-}
-
 #' Options for the thumb of a chakra slider
 #' @description Create a list of options to be passed to \code{thumbOptions}
 #' in \code{\link{chakraSliderInput}}
@@ -52,54 +46,7 @@ thumbOptions <- function(
   )
 }
 
-#' Options for the number input of a chakra slider
-#' @description Create a list of options to be passed to
-#' \code{numberInputOptions} in \code{\link{chakraSliderInput}}.
-#'
-#' @param width width of the number input, e.g. \code{"100px"} or \code{"20\%"}
-#' @param fontSize font size of the displayed value, e.g. \code{"15px"}
-#' @param fontColor color of the displayed value
-#' @param borderColor color of the border of the number input
-#' @param focusBorderColor color of the border of the number input on focus
-#' @param borderWidth width of the border of the number input,
-#' e.g. \code{"3px"} or \code{"medium"}
-#' @param stepperColor color(s) of the steppers, can be a single color
-#' or a vector of two colors, one for each stepper (increment and decrement)
-#'
-#' @importFrom shiny validateCssUnit
-#' @export
-numberInputOptions <- function(
-  width = NULL,
-  fontSize = NULL,
-  fontColor = NULL,
-  borderColor = NULL,
-  focusBorderColor= NULL,
-  borderWidth = NULL,
-  stepperColor = NULL
-){
-  list(
-    width = validateCssUnit(width),
-    fontSize = validateCssUnit(fontSize),
-    fontColor = color2hex(fontColor),
-    borderColor = color2hex(borderColor),
-    focusBorderColor = color2hex(focusBorderColor),
-    borderWidth = if(!is.null(borderWidth)){
-      if(borderWidth %in% c("medium", "thick", "thin")){
-        borderWidth
-      }else{
-        validateCssUnit(borderWidth)
-      }
-    },
-    stepperColor = if(!is.null(stepperColor)){
-      if(length(stepperColor) == 1L) stepperColor <- rep(stepperColor, 2L)
-      lapply(stepperColor, color2hex)
-    }else{
-      list(NULL, NULL)
-    }
-  )
-}
-
-#' Create a chakra slider
+#' Chakra slider
 #' @description This creates a chakra slider in the Shiny UI. A chakra slider
 #' has two elements: a number input and a slider, which are linked together.
 #'
@@ -171,7 +118,8 @@ chakraSliderInput <- function(
         list(NULL, NULL)
       },
       thumbOptions = thumbOptions,
-      gap = validateCssUnit(gap)
+      gap = validateCssUnit(gap),
+      slider = TRUE
     ),
     container = function(...){
       htmltools::tags$div(

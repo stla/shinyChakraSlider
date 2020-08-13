@@ -82,6 +82,45 @@ class Widget extends React.PureComponent {
   }
 
   render() {
+
+    let slider = null;
+    if(this.props.slider) {
+      slider = (
+      <Slider
+        flex = "1"
+        min = {this.props.min}
+        max = {this.props.max}
+        step = {this.props.step}
+        size = {this.props.size}
+        value = {this.state.value}
+        onChange = {this.handleChange}
+      >
+        <SliderTrack
+          bg = {this.props.trackColor[1]}
+        >
+          <SliderFilledTrack
+            bg = {this.props.trackColor[0]}
+          />
+        </SliderTrack>
+        <SliderThumb
+          fontSize = "sm"
+          width = {this.props.thumbOptions.width}
+          height = {this.props.thumbOptions.height}
+          bg = {this.props.thumbOptions.color}
+          borderColor = {this.props.thumbOptions.borderColor}
+          borderWidth = {this.props.thumbOptions.borderWidth}
+        >
+          {createThumb(
+            this.props.thumbOptions.icon,
+            this.props.thumbOptions.iconColor,
+            this.props.thumbOptions.iconSize
+          )}
+        </SliderThumb>
+      </Slider>);
+    }
+
+    let marginRight = this.props.slider ? this.props.gap : 0;
+
     return (
       <ChakraProvider theme = {theme}>
         <CSSReset />
@@ -93,7 +132,7 @@ class Widget extends React.PureComponent {
             step = {this.props.step}
             size = {this.props.size}
             maxW = {this.props.numberInputOptions.width}
-            mr = {this.props.gap}
+            mr = {marginRight}
             value = {this.state.value}
             onChange = {this.handleChange}
           >
@@ -114,37 +153,7 @@ class Widget extends React.PureComponent {
               />
             </NumberInputStepper>
           </NumberInput>
-          <Slider
-            flex = "1"
-            min = {this.props.min}
-            max = {this.props.max}
-            step = {this.props.step}
-            size = {this.props.size}
-            value = {this.state.value}
-            onChange = {this.handleChange}
-          >
-            <SliderTrack
-              bg = {this.props.trackColor[1]}
-            >
-              <SliderFilledTrack
-                bg = {this.props.trackColor[0]}
-              />
-            </SliderTrack>
-            <SliderThumb
-              fontSize = "sm"
-              width = {this.props.thumbOptions.width}
-              height = {this.props.thumbOptions.height}
-              bg = {this.props.thumbOptions.color}
-              borderColor = {this.props.thumbOptions.borderColor}
-              borderWidth = {this.props.thumbOptions.borderWidth}
-            >
-              {createThumb(
-                this.props.thumbOptions.icon,
-                this.props.thumbOptions.iconColor,
-                this.props.thumbOptions.iconSize
-              )}
-            </SliderThumb>
-          </Slider>
+          {slider}
         </Flex>
       </ChakraProvider>
     );
@@ -165,6 +174,7 @@ const Input = ({ configuration, value, setValue }) => {
       trackColor = {configuration.trackColor}
       thumbOptions = {configuration.thumbOptions}
       gap = {configuration.gap}
+      slider = {configuration.slider}
     />
   );
 };
