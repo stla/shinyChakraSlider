@@ -64,7 +64,7 @@ numberInputOptions <- function(
 #' @importFrom reactR createReactShinyInput
 #' @importFrom htmltools htmlDependency tags
 #' @importFrom shiny validateCssUnit
-#' @importFrom utils packageVersion
+#' @importFrom utils packageVersion URLencode
 #' @export
 chakraNumberInput <- function(
   inputId,
