@@ -23,7 +23,7 @@ Authors@R: c(
 Description: Provides a combined slider and numeric input for usage in a Shiny UI.
 URL: https://github.com/stla/shinyChakraSlider
 BugReports: https://github.com/stla/shinyChakraSlider/issues
-License: GPL-3 | file LICENSE
+License: GPL-3 
 Encoding: UTF-8
 LazyData: true
 Imports: 
