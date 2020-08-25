@@ -8,3 +8,4 @@
 ^yarn\.lock$
 ^inst/essais$
 ^inst/shinyChakraSlider\.gif$
+^cran-comments\.md$
