@@ -20,7 +20,7 @@ Authors@R: c(
            role = c("ctb", "cph"),
            comment = "'react-html-parser' library (https://github.com/wrakky/react-html-parser)")
     )
-Description: Provides a combined slider and numeric input for usage in a Shiny UI.
+Description: Provides a combined slider and numeric input for usage in a 'Shiny' app. The slider and the numeric input are linked together: each one is updated when the other one changes. Many styling properties are customizable (e.g. colors and size).
 URL: https://github.com/stla/shinyChakraSlider
 BugReports: https://github.com/stla/shinyChakraSlider/issues
 License: GPL-3 
